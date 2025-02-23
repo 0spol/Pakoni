@@ -1,4 +1,4 @@
-package com.pakoni.application.ui.theme
+package com.pakoni.designsystem.theme
 
 import androidx.compose.ui.graphics.Color
 

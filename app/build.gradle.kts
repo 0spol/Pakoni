@@ -2,10 +2,10 @@ plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.org.jetbrains.kotlin.android)
     alias(libs.plugins.compose.compiler)
+    alias(libs.plugins.jetbrains.kotlin.serialization)
     alias(libs.plugins.ksp)
-    alias(libs.plugins.jetbrainsKotlinSerialization)
     alias(libs.plugins.kotlin.kapt)
-    alias(libs.plugins.hilt.gradle)
+    alias(libs.plugins.hilt)
 }
 
 android {
@@ -33,8 +33,12 @@ android {
     }
 
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_17
-        targetCompatibility = JavaVersion.VERSION_17
+        sourceCompatibility = JavaVersion.VERSION_21
+        targetCompatibility = JavaVersion.VERSION_21
+    }
+
+    kotlinOptions {
+        jvmTarget = "21"
     }
 
     buildFeatures {
@@ -48,9 +52,6 @@ android {
             excludes += "/META-INF/{AL2.0,LGPL2.1}"
         }
     }
-    kotlinOptions {
-        jvmTarget = "17"
-    }
     kapt {
         correctErrorTypes = true
     }
@@ -60,6 +61,7 @@ android {
 }
 
 dependencies {
+    implementation(project(":core:designsystem"))
 
     // --- Core Android dependencies ---
     implementation(libs.androidx.core.ktx)
@@ -69,7 +71,7 @@ dependencies {
     // --- Dependency Injection (Hilt) ---
     implementation(libs.hilt)
     kapt(libs.hilt.compiler)
-    implementation(libs.androidx.hilt.navigation.compose)
+    implementation(libs.hilt.navigation)
 
 
     // --- Room (Base de Datos) ---
@@ -78,9 +80,9 @@ dependencies {
     ksp(libs.room.compiler)
 
     // --- Architecture Components (Lifecycle, ViewModel, Navigation) ---
-    implementation(libs.androidx.lifecycle.runtime.compose)
-    implementation(libs.androidx.lifecycle.viewmodel.compose)
-    implementation(libs.androidx.navigation.compose)
+//    implementation(libs.androidx.lifecycle.runtime.compose)
+//    implementation(libs.androidx.lifecycle.viewmodel.compose)
+//    implementation(libs.androidx.navigation.compose)
 
     // --- Jetpack Compose ---
     implementation(platform(libs.androidx.compose.bom))
@@ -89,11 +91,15 @@ dependencies {
     implementation(libs.androidx.ui.tooling.preview)
     implementation(libs.androidx.material3)
 
+    // -- Coil Compose --
+//    implementation(libs.io.coil)
+
+
+
     // --- Serialización JSON ---
-    implementation(libs.kotlinx.serialization.json)
+//    implementation(libs.kotlinx.serialization.json)
 
     // --- Testing ---
-    // Dependencias para pruebas unitarias
     testImplementation(libs.junit)
 
     // Dependencias para pruebas en Android
@@ -103,6 +109,6 @@ dependencies {
     androidTestImplementation(libs.androidx.ui.test.junit4)
 
     // Dependencias para depuración en modo debug
-    debugImplementation(libs.androidx.ui.tooling)
-    debugImplementation(libs.androidx.ui.test.manifest)
+//    debugImplementation(libs.androidx.ui.tooling)
+//    debugImplementation(libs.androidx.ui.test.manifest)
 }
