@@ -1,18 +1,14 @@
 plugins {
     alias(libs.plugins.android.library)
     alias(libs.plugins.org.jetbrains.kotlin.android)
-    kotlin("kapt")
-    alias(libs.plugins.hilt)
 }
 
-apply(plugin = "org.jetbrains.kotlin.android")
-
 android {
-    namespace = "com.pakoni.data"
+    namespace = "com.colorplayground.domain"
     compileSdk = 35
 
     defaultConfig {
-        minSdk = 24
+        minSdk = 35
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles("consumer-rules.pro")
@@ -28,20 +24,15 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_17
-        targetCompatibility = JavaVersion.VERSION_17
+        sourceCompatibility = JavaVersion.VERSION_11
+        targetCompatibility = JavaVersion.VERSION_11
     }
     kotlinOptions {
-        jvmTarget = "17"
-    }
-    kapt {
-        correctErrorTypes = true
+        jvmTarget = "11"
     }
 }
 
 dependencies {
-    implementation(project(":core:model"))
-    implementation(project(":core:network"))
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
@@ -49,9 +40,4 @@ dependencies {
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
-
-    implementation(libs.androidx.paging.common.android)
-    implementation(libs.hilt)
-    implementation(libs.hilt.navigation)
-    kapt(libs.hilt.compiler)
 }

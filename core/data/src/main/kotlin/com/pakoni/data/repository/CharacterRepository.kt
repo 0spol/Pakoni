@@ -3,8 +3,7 @@ package com.pakoni.data.repository
 import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import androidx.paging.PagingData
-import com.pakoni.data.model.Character
-import com.pakoni.data.util.CharacterPagingSource
+import com.pakoni.model.data.CharacterModel
 import com.pakoni.network.retrofit.RetrofitPakoniNetwork
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
@@ -15,10 +14,10 @@ class CharacterRepository @Inject constructor(val api: RetrofitPakoniNetwork) {
         const val PREFETCH_ITEMS = 3
     }
 
-    fun getAllCharacters(): Flow<PagingData<Character>>{
+    fun getAllCharacters(): Flow<PagingData<CharacterModel>>{
         return Pager(config = PagingConfig(pageSize = MAX_ITEMS, prefetchDistance = PREFETCH_ITEMS),
             pagingSourceFactory = {
-                CharacterPagingSource(api)
+                com.pakoni.network.util.CharacterPagingSource(api)
             }).flow
 
     }

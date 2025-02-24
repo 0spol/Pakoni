@@ -1,7 +1,7 @@
 package com.pakoni.network.model
 
 import com.google.gson.annotations.SerializedName
-import com.pakoni.data.model.Pallete
+import com.pakoni.model.data.PalleteModel
 
 data class NetworkPallete(
     @SerializedName("id") val id: Int,
@@ -9,8 +9,8 @@ data class NetworkPallete(
     @SerializedName("status") val status: String,
     @SerializedName("image") val image: String,
 ){
-    fun toPresentation(): Pallete {
-        return Pallete(
+    fun toPresentation(): PalleteModel {
+        return PalleteModel(
             id = id,
             name = name,
             image = image,

@@ -1,7 +1,7 @@
 package com.pakoni.network.model
 
 import com.google.gson.annotations.SerializedName
-import com.pakoni.data.model.Character
+import com.pakoni.model.data.CharacterModel
 
 data class NetworkCharacter(
     @SerializedName("id") val id: Int,
@@ -9,8 +9,9 @@ data class NetworkCharacter(
     @SerializedName("status") val status: String,
     @SerializedName("image") val image: String,
 ){
-    fun toPresentation():Character{
-        return Character(
+
+    fun toPresentation(): CharacterModel {
+        return CharacterModel(
             id = id,
             name = name,
             image = image,

@@ -44,11 +44,11 @@ android {
 
 dependencies {
     implementation(project(":core:model"))
-    implementation(project(":core:data"))
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
     implementation(libs.material)
+    implementation(libs.androidx.paging.common.android)
     testImplementation(libs.junit)
     implementation(libs.hilt)
     implementation(libs.hilt.navigation)

@@ -1,20 +1,20 @@
-package com.pakoni.data.util
+package com.pakoni.network.util
 
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
-import com.pakoni.data.model.Character
+import com.pakoni.model.data.CharacterModel
 import com.pakoni.network.retrofit.RetrofitPakoniNetwork
 import java.io.IOException
 import javax.inject.Inject
 
 class CharacterPagingSource @Inject constructor(private val api: RetrofitPakoniNetwork) :
-    PagingSource<Int, Character>() {
+    PagingSource<Int, CharacterModel>() {
 
-    override fun getRefreshKey(state: PagingState<Int, Character>): Int? {
+    override fun getRefreshKey(state: PagingState<Int, CharacterModel>): Int? {
         return state.anchorPosition
     }
 
-    override suspend fun load(params: LoadParams<Int>): LoadResult<Int, Character> {
+    override suspend fun load(params: LoadParams<Int>): LoadResult<Int, CharacterModel> {
 
         return try {
             val page = params.key ?: 1

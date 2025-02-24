@@ -1,5 +1,5 @@
 plugins {
-    alias(libs.plugins.android.application)
+    alias(libs.plugins.android.library)
     alias(libs.plugins.org.jetbrains.kotlin.android)
     alias(libs.plugins.compose.compiler)
     alias(libs.plugins.jetbrains.kotlin.serialization)
@@ -9,17 +9,14 @@ plugins {
 }
 
 android {
-    namespace = "com.pakoni.application"
+    namespace = "com.pakoni.home"
     compileSdk = 35
 
     defaultConfig {
-        applicationId = "com.pakoni.application"
         minSdk = 24
-        targetSdk = 35
-        versionCode = 1
-        versionName = "1.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+        consumerProguardFiles("consumer-rules.pro")
     }
 
     buildTypes {
@@ -31,12 +28,10 @@ android {
             )
         }
     }
-
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_11
         targetCompatibility = JavaVersion.VERSION_11
     }
-
     kotlinOptions {
         jvmTarget = "11"
     }
@@ -46,23 +41,13 @@ android {
     hilt {
         enableAggregatingTask = false
     }
-
-    buildFeatures {
-        compose = true
-    }
-    composeOptions {
-        kotlinCompilerExtensionVersion = "1.5.1"
-    }
-    packaging {
-        resources {
-            excludes += "/META-INF/{AL2.0,LGPL2.1}"
-        }
-    }
 }
 
 dependencies {
 
-    implementation(project(":feature:home"))
+    implementation(project(":core:model"))
+    implementation(project(":core:data"))
+
     // --- Core Android dependencies ---
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
@@ -71,6 +56,8 @@ dependencies {
     // --- Dependency Injection (Hilt) ---
     implementation(libs.hilt)
     implementation(libs.androidx.runtime.livedata)
+    implementation(libs.androidx.paging.common.android)
+    implementation(libs.androidx.paging.compose.android)
     kapt(libs.hilt.compiler)
     implementation(libs.androidx.compose.runtime)
 
@@ -97,6 +84,10 @@ dependencies {
 
     // --- Serialización JSON ---
     implementation(libs.kotlinx.serialization.json)
+    implementation(libs.hilt)
+    implementation(libs.hilt.navigation)
+    kapt(libs.hilt.compiler)
+    implementation(libs.io.coil)
 
     // --- Testing ---
     testImplementation(libs.junit)
