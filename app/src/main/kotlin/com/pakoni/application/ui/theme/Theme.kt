@@ -1,4 +1,4 @@
-package com.pakoni.designsystem.theme
+package com.pakoni.application.ui.theme
 
 import android.os.Build
 import androidx.compose.foundation.isSystemInDarkTheme

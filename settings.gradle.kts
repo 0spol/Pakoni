@@ -25,9 +25,8 @@ include(":app")
 include(":core:network")
 include(":core:model")
 include(":core:data")
-include(":core:designsystem")
 
-check(JavaVersion.current().isCompatibleWith(JavaVersion.VERSION_21)) {
+check(JavaVersion.current().isCompatibleWith(JavaVersion.VERSION_17)) {
     """
     Pakoni requires JDK 17+ but it is currently using JDK ${JavaVersion.current()}.
     Java Home: [${System.getProperty("java.home")}]

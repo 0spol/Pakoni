@@ -1,4 +1,4 @@
-package com.pakoni.designsystem.theme
+package com.pakoni.application.ui.theme
 
 import androidx.compose.material3.Typography
 import androidx.compose.ui.text.TextStyle

@@ -33,12 +33,18 @@ android {
     }
 
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_21
-        targetCompatibility = JavaVersion.VERSION_21
+        sourceCompatibility = JavaVersion.VERSION_11
+        targetCompatibility = JavaVersion.VERSION_11
     }
 
     kotlinOptions {
-        jvmTarget = "21"
+        jvmTarget = "11"
+    }
+    kapt {
+        correctErrorTypes = true
+    }
+    hilt {
+        enableAggregatingTask = false
     }
 
     buildFeatures {
@@ -52,16 +58,9 @@ android {
             excludes += "/META-INF/{AL2.0,LGPL2.1}"
         }
     }
-    kapt {
-        correctErrorTypes = true
-    }
-    hilt {
-        enableAggregatingTask = false
-    }
 }
 
 dependencies {
-    implementation(project(":core:designsystem"))
 
     // --- Core Android dependencies ---
     implementation(libs.androidx.core.ktx)
@@ -70,8 +69,9 @@ dependencies {
 
     // --- Dependency Injection (Hilt) ---
     implementation(libs.hilt)
+    implementation(libs.androidx.runtime.livedata)
     kapt(libs.hilt.compiler)
-    implementation(libs.hilt.navigation)
+    implementation(libs.androidx.compose.runtime)
 
 
     // --- Room (Base de Datos) ---
@@ -80,9 +80,9 @@ dependencies {
     ksp(libs.room.compiler)
 
     // --- Architecture Components (Lifecycle, ViewModel, Navigation) ---
-//    implementation(libs.androidx.lifecycle.runtime.compose)
-//    implementation(libs.androidx.lifecycle.viewmodel.compose)
-//    implementation(libs.androidx.navigation.compose)
+    implementation(libs.androidx.lifecycle.runtime.compose)
+    implementation(libs.androidx.lifecycle.viewmodel.compose)
+    implementation(libs.androidx.navigation.compose)
 
     // --- Jetpack Compose ---
     implementation(platform(libs.androidx.compose.bom))
@@ -90,14 +90,12 @@ dependencies {
     implementation(libs.androidx.ui.graphics)
     implementation(libs.androidx.ui.tooling.preview)
     implementation(libs.androidx.material3)
-
-    // -- Coil Compose --
-//    implementation(libs.io.coil)
-
-
+    implementation(libs.androidx.appcompat)
+    implementation(libs.material)
+    implementation(libs.androidx.constraintlayout)
 
     // --- Serialización JSON ---
-//    implementation(libs.kotlinx.serialization.json)
+    implementation(libs.kotlinx.serialization.json)
 
     // --- Testing ---
     testImplementation(libs.junit)
@@ -109,6 +107,6 @@ dependencies {
     androidTestImplementation(libs.androidx.ui.test.junit4)
 
     // Dependencias para depuración en modo debug
-//    debugImplementation(libs.androidx.ui.tooling)
-//    debugImplementation(libs.androidx.ui.test.manifest)
+    debugImplementation(libs.androidx.ui.tooling)
+    debugImplementation(libs.androidx.ui.test.manifest)
 }
