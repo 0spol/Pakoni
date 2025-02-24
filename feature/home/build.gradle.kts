@@ -58,6 +58,7 @@ dependencies {
     implementation(libs.androidx.runtime.livedata)
     implementation(libs.androidx.paging.common.android)
     implementation(libs.androidx.paging.compose.android)
+    implementation(libs.androidx.paging)
     kapt(libs.hilt.compiler)
     implementation(libs.androidx.compose.runtime)
 
@@ -71,6 +72,9 @@ dependencies {
     implementation(libs.androidx.lifecycle.runtime.compose)
     implementation(libs.androidx.lifecycle.viewmodel.compose)
     implementation(libs.androidx.navigation.compose)
+    implementation(libs.hilt)
+    implementation(libs.hilt.navigation)
+    kapt(libs.hilt.compiler)
 
     // --- Jetpack Compose ---
     implementation(platform(libs.androidx.compose.bom))
@@ -84,9 +88,6 @@ dependencies {
 
     // --- Serialización JSON ---
     implementation(libs.kotlinx.serialization.json)
-    implementation(libs.hilt)
-    implementation(libs.hilt.navigation)
-    kapt(libs.hilt.compiler)
     implementation(libs.io.coil)
 
     // --- Testing ---

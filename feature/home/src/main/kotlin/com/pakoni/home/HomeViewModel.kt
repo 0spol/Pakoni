@@ -9,8 +9,9 @@ import jakarta.inject.Inject
 import kotlinx.coroutines.flow.Flow
 
 @HiltViewModel
-class HomeViewModel @Inject constructor(characterRepository: CharacterRepository) : ViewModel() {
-
+class HomeViewModel @Inject constructor(
+    characterRepository: CharacterRepository
+) : ViewModel() {
     val characters: Flow<PagingData<CharacterModel>> = characterRepository.getAllCharacters()
-
 }
+

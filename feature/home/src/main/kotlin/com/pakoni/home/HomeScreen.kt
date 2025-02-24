@@ -38,7 +38,7 @@ fun HomeScreen(rickListViewModel: HomeViewModel = hiltViewModel()) {
 
     Box(modifier = Modifier.fillMaxSize()) {
         Image(
-            painter = painterResource(id = com.google.android.material.R.drawable.abc_ic_star_black_48dp),
+            painter = painterResource(id = R.drawable.background),
             contentDescription = "background",
             modifier = Modifier.fillMaxSize(),
             contentScale = ContentScale.Crop
