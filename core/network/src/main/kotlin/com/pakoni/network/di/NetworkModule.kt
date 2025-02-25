@@ -15,15 +15,14 @@ import javax.inject.Singleton
 object NetworkModule {
 
     private const val BASE_URL_RICK = "https://rickandmortyapi.com/api/"
-//    private const val BASE_URL_PALLETE = "https://rickandmortyapi.com/api/"
 
-    // Proveer la instancia de RetrofitPakoniNetwork (interfaz de Retrofit)
+    // Provide the RetrofitPakoniNetwork instance (Retrofit interface)
     @Provides
     @Singleton
     fun provideApiService(retrofit: Retrofit): RetrofitPakoniNetwork =
         retrofit.create(RetrofitPakoniNetwork::class.java)
 
-    // Proveer la instancia de Retrofit con OkHttpClient
+    // Provide the Retrofit instance with OkHttpClient
     @Provides
     @Singleton
     fun provideRetrofit(okHttpClient: OkHttpClient): Retrofit =
@@ -33,10 +32,10 @@ object NetworkModule {
             .client(okHttpClient)
             .build()
 
-    // Proveer la instancia de OkHttpClient
+    // Provide the OkHttpClient instance
     @Provides
     @Singleton
     fun provideOkHttpClient(): OkHttpClient =
         OkHttpClient.Builder().build()
 }
-
+//    private const val BASE_URL_PALLETE = "https://rickandmortyapi.com/api/"
