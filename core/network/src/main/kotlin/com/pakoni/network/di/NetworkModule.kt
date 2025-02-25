@@ -17,22 +17,24 @@ object NetworkModule {
     private const val BASE_URL_RICK = "https://rickandmortyapi.com/api/"
 
     // Provide the RetrofitPakoniNetwork instance (Retrofit interface)
-    @Provides
-    @Singleton
-    fun provideApiService(retrofit: Retrofit): RetrofitPakoniNetwork =
-        retrofit.create(RetrofitPakoniNetwork::class.java)
+//    @Provides
+//    @Singleton
+//    fun provideApiService(retrofit: Retrofit): RetrofitPakoniNetwork =
+//        retrofit.create(RetrofitPakoniNetwork::class.java)
 
     // Provide the Retrofit instance with OkHttpClient
     @Provides
     @Singleton
-    fun provideRetrofit(okHttpClient: OkHttpClient): Retrofit =
-        Retrofit.Builder()
+    fun provideRetrofit(okHttpClient: OkHttpClient): RetrofitPakoniNetwork {
+        val retrofit = Retrofit.Builder()
             .baseUrl(BASE_URL_RICK)
             .addConverterFactory(GsonConverterFactory.create())
             .client(okHttpClient)
             .build()
 
-    // Provide the OkHttpClient instance
+        return retrofit.create(RetrofitPakoniNetwork::class.java)
+    }
+
     @Provides
     @Singleton
     fun provideOkHttpClient(): OkHttpClient =
