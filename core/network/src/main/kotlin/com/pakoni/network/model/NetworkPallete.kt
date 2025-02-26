@@ -14,7 +14,7 @@ data class NetworkPallete(
             id = id,
             name = name,
             image = image,
-            isAlive = status == "Alive"
+            status = status == "Alive"
         )
     }
 }
