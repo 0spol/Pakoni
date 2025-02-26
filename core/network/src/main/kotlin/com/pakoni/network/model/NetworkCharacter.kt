@@ -6,8 +6,9 @@ import com.pakoni.model.data.CharacterModel
 data class NetworkCharacter(
     @SerializedName("id") val id: Int,
     @SerializedName("name") val name: String,
-    @SerializedName("status") val status: String,
     @SerializedName("image") val image: String,
+    @SerializedName("status") val status: String,
+    @SerializedName("species") val species: String
 ){
 
     fun toPresentation(): CharacterModel {
@@ -15,7 +16,8 @@ data class NetworkCharacter(
             id = id,
             name = name,
             image = image,
-            isAlive = status == "Alive"
+            status = status,
+            species = species,
         )
     }
 }
