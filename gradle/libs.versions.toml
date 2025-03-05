@@ -1,6 +1,6 @@
 [versions]
 # 🔹 Gradle y Kotlin
-agp = "8.8.1"
+agp = "8.8.2"
 compiler = "1.5.15"
 kotlin = "2.1.10"
 
@@ -18,9 +18,9 @@ androidxHilt = "1.2.0"
 hilt = "2.55"
 
 # 🔹 Jetpack Compose
-activityCompose = "1.10.0"
+activityCompose = "1.10.1"
 composeBom = "2025.02.00"
-navigationCompose = "2.8.7"
+navigationCompose = "2.8.8"
 
 # 🔹 Kotlin Symbol Processing (KSP)
 ksp = "2.1.10-1.0.29"
@@ -37,7 +37,7 @@ room = "2.6.1"
 
 # 🔹 Serialización JSON
 kotlinxSerialization = "1.8.0"
-constraintlayout = "2.2.0"
+constraintlayout = "2.2.1"
 
 # 🔹 Testing
 espressoCore = "3.6.1"

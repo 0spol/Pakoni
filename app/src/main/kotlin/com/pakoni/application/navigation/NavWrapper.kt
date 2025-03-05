@@ -4,10 +4,10 @@ import androidx.compose.runtime.Composable
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import com.pakoni.bookmarks.BookMarksScreen
+import com.pakoni.config.ConfigScreen
 import com.pakoni.home.HomeScreen
-import com.pakoni.home.HomeScreen
-import com.pakoni.home.HomeScreen
-import com.pakoni.home.HomeScreen
+
 
 @Composable
 fun NavWrapper() {
@@ -15,22 +15,21 @@ fun NavWrapper() {
     NavHost(navController = navController, startDestination = HomeScreen) {
         composable<HomeScreen> {
             HomeScreen(
-                navigateToBookMarkS = { navController.navigate(BookMarksS) },
-                navigateToConfigS = { navController.navigate(ConfigS) },
+                navigateToBookMarkS = { navController.navigate(BookMarksScreen) },
+                navigateToConfigS = { navController.navigate(ConfigScreen) },
             )
         }
-//        composable<BookMarksS> {
-//            BookMarksS(
-//                navigateToHomeS = { navController.navigate(HomeS) },
-//                navigateToConfigS = { navController.navigate(ConfigS) },
-//            )
-//
-//        }
-//        composable<ConfigS> {
-//            ConfigS(
-//                navigateToConfigS = { navController.navigate(BookMarksS) },
-//                navigateToLoginHomeS = { navController.navigate(HomeS) }
-//            )
-//        }
+        composable<BookMarksScreen> {
+            BookMarksScreen(
+                navigateToHomeS = { navController.navigate(HomeScreen) },
+                navigateToConfigS = { navController.navigate(ConfigScreen) },
+            )
+        }
+        composable<ConfigScreen> {
+            ConfigScreen(
+                navigateToConfigS = { navController.navigate(BookMarksScreen) },
+                navigateToLoginHomeS = { navController.navigate(HomeScreen) }
+            )
+        }
     }
 }

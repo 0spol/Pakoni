@@ -7,7 +7,7 @@ import kotlinx.serialization.Serializable
 object HomeScreen
 
 @Serializable
-object BookMarksS
+object BookMarksScreen
 
 @Serializable
-object ConfigS
+object ConfigScreen
