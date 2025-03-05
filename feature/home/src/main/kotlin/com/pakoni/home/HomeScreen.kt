@@ -31,7 +31,11 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.setValue
 
 @Composable
-fun HomeScreen(rickListViewModel: HomeViewModel = hiltViewModel()) {
+fun HomeScreen(
+    navigateToBookMarkS: () -> Unit,
+    navigateToConfigS: () -> Unit,
+    rickListViewModel: HomeViewModel = hiltViewModel()
+) {
     var activeTab by remember { mutableStateOf("home") }
     val listState = rememberLazyListState()
 
@@ -61,7 +65,7 @@ fun HomeScreen(rickListViewModel: HomeViewModel = hiltViewModel()) {
         modifier = Modifier
             .background(Color(0xFF202530))
             .fillMaxSize()
-            .windowInsetsPadding(WindowInsets.navigationBars) // Add padding for the navigation bar
+            .windowInsetsPadding(WindowInsets.navigationBars)
     ) { paddingValues ->
         Box(modifier = Modifier.padding(paddingValues)) {
             when (activeTab) {
@@ -136,6 +140,7 @@ fun CharacterListScreen(rickListViewModel: HomeViewModel, listState: LazyListSta
             loadState?.append is LoadState.Error -> {
                 item { ErrorScreen(Modifier.fillMaxWidth()) }
             }
+
             characters.itemCount == 0 -> {
                 item { EmptyListScreen(Modifier.fillParentMaxSize()) }
             }
@@ -245,7 +250,9 @@ fun LoadingIndicator(modifier: Modifier = Modifier) {
 @Composable
 fun ErrorScreen(modifier: Modifier = Modifier) {
     Box(
-        modifier = modifier.fillMaxSize().background(Color.Red),
+        modifier = modifier
+            .fillMaxSize()
+            .background(Color.Red),
         contentAlignment = Alignment.Center
     ) {
         Text(text = "Ha ocurrido un error", color = Color.White)

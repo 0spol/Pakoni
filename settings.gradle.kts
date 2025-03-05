@@ -35,3 +35,5 @@ check(JavaVersion.current().isCompatibleWith(JavaVersion.VERSION_17)) {
     """.trimIndent()
 }
 include(":core:domain")
+include(":feature:bookmarks")
+include(":feature:config")
