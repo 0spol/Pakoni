@@ -1,5 +1,5 @@
 plugins {
-    alias(libs.plugins.android.application)
+    alias(libs.plugins.android.library)
     alias(libs.plugins.org.jetbrains.kotlin.android)
     alias(libs.plugins.hilt)
     alias(libs.plugins.ksp)
@@ -8,20 +8,14 @@ plugins {
 }
 
 android {
-    namespace = "com.pakoni.application"
+    namespace = "com.pakoni.bookmarks"
     compileSdk = 35
 
     defaultConfig {
-        applicationId = "com.pakoni.application"
         minSdk = 24
-        targetSdk = 35
-        versionCode = 1
-        versionName = "1.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
-        vectorDrawables {
-            useSupportLibrary = true
-        }
+        consumerProguardFiles("consumer-rules.pro")
     }
 
     buildTypes {
@@ -33,7 +27,6 @@ android {
             )
         }
     }
-
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_17
         targetCompatibility = JavaVersion.VERSION_17
@@ -41,38 +34,25 @@ android {
     kotlinOptions {
         jvmTarget = "17"
     }
-    hilt {
-        enableAggregatingTask = false
-    }
-    buildFeatures {
-        compose = true
-    }
-    composeOptions {
-        kotlinCompilerExtensionVersion = "1.5.15"
-    }
-    packaging {
-        resources {
-            excludes += "/META-INF/{AL2.0,LGPL2.1}"
-        }
-    }
 }
 
 dependencies {
 
-    implementation(project(":feature:home"))
-    implementation(project(":core:data"))
     implementation(project(":core:domain"))
     implementation(project(":core:model"))
-    implementation(project(":core:network"))
+    implementation(project(":core:data"))
 
     implementation(libs.androidx.core.ktx)
-//    implementation(libs.androidx.core.splashscreen)
     implementation(libs.androidx.lifecycle.runtime.ktx)
+    implementation(libs.hilt)
+    ksp(libs.hilt.compiler)
+    implementation(libs.hilt.navigation)
     implementation(libs.androidx.activity.compose)
     implementation(platform(libs.androidx.compose.bom))
     implementation(libs.androidx.ui)
     implementation(libs.androidx.ui.graphics)
     implementation(libs.androidx.ui.tooling.preview)
+    implementation(libs.androidx.material)
     implementation(libs.androidx.material3)
     implementation(libs.androidx.navigation.compose)
     implementation(libs.androidx.lifecycle.runtime.compose)
@@ -92,13 +72,6 @@ dependencies {
     implementation(libs.androidx.material3.android)
     implementation(libs.androidx.appcompat)
     implementation(libs.material)
-
-    implementation(libs.hilt)
-    implementation(project(":feature:bookmarks"))
-    implementation(project(":feature:config"))
-    ksp(libs.hilt.compiler)
-    implementation(libs.hilt.navigation)
-
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)

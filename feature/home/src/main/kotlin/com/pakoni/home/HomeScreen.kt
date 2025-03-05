@@ -31,7 +31,11 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.setValue
 
 @Composable
-fun HomeScreen(rickListViewModel: HomeViewModel = hiltViewModel()) {
+fun HomeScreen(
+    navigateToBookMarkS: () -> Unit,
+    navigateToConfigS: () -> Unit,
+    rickListViewModel: HomeViewModel = hiltViewModel()
+) {
     var activeTab by remember { mutableStateOf("home") }
     val listState = rememberLazyListState()
 
@@ -61,7 +65,7 @@ fun HomeScreen(rickListViewModel: HomeViewModel = hiltViewModel()) {
         modifier = Modifier
             .background(Color(0xFF202530))
             .fillMaxSize()
-            .windowInsetsPadding(WindowInsets.navigationBars) // Add padding for the navigation bar
+            .windowInsetsPadding(WindowInsets.navigationBars)
     ) { paddingValues ->
         Box(modifier = Modifier.padding(paddingValues)) {
             when (activeTab) {
@@ -136,8 +140,9 @@ fun CharacterListScreen(rickListViewModel: HomeViewModel, listState: LazyListSta
             loadState?.append is LoadState.Error -> {
                 item { ErrorScreen(Modifier.fillMaxWidth()) }
             }
+
             characters.itemCount == 0 -> {
-                item { EmptyListScreen(Modifier.fillParentMaxSize()) }
+                item { LoadingIndicator(Modifier.fillMaxWidth()) }
             }
 
             else -> {
@@ -149,6 +154,7 @@ fun CharacterListScreen(rickListViewModel: HomeViewModel, listState: LazyListSta
     }
 }
 
+
 @Composable
 fun CharacterItem(character: CharacterModel) {
     Row(
@@ -159,19 +165,18 @@ fun CharacterItem(character: CharacterModel) {
             .padding(8.dp),
         verticalAlignment = Alignment.CenterVertically
     ) {
-        AsyncImage(
-            model = character.image,
-            contentDescription = "Character Image",
+        Box(
             modifier = Modifier
-                .size(80.dp)
-                .clip(
-                    RoundedCornerShape(
-                        topStart = 12.dp,
-                        bottomStart = 12.dp
-                    )
-                ),
-            contentScale = ContentScale.Crop
-        )
+                .size(84.dp)
+                .clip(RoundedCornerShape(12.dp))
+        ) {
+            AsyncImage(
+                model = character.image,
+                contentDescription = "Character Image",
+                modifier = Modifier.fillMaxSize(),
+                contentScale = ContentScale.Crop
+            )
+        }
         Spacer(modifier = Modifier.width(12.dp))
         Column {
             Text(
@@ -234,9 +239,9 @@ fun getStatusColor(status: String): Color {
 
 @Composable
 fun LoadingIndicator(modifier: Modifier = Modifier) {
-    Box(modifier = modifier, contentAlignment = Alignment.Center) {
+    Box(modifier = modifier, contentAlignment = Alignment.TopCenter) {
         CircularProgressIndicator(
-            modifier = Modifier.size(64.dp),
+            modifier = Modifier.size(50.dp),
             color = Color.White
         )
     }
@@ -245,16 +250,18 @@ fun LoadingIndicator(modifier: Modifier = Modifier) {
 @Composable
 fun ErrorScreen(modifier: Modifier = Modifier) {
     Box(
-        modifier = modifier.fillMaxSize().background(Color.Red),
+        modifier = modifier
+            .fillMaxSize()
+            .background(Color.Red),
         contentAlignment = Alignment.Center
     ) {
         Text(text = "Ha ocurrido un error", color = Color.White)
     }
 }
 
-@Composable
-fun EmptyListScreen(modifier: Modifier = Modifier) {
-    Box(modifier = modifier, contentAlignment = Alignment.Center) {
-        Text(text = "Todavía no hay personajes", color = Color.White)
-    }
-}
+//@Composable
+//fun EmptyListScreen(modifier: Modifier = Modifier) {
+//    Box(modifier = modifier, contentAlignment = Alignment.Center) {
+//        Text(text = "Todavía no hay personajes", color = Color.White)
+//    }
+//}
