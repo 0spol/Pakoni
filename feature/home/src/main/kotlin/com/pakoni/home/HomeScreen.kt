@@ -142,7 +142,7 @@ fun CharacterListScreen(rickListViewModel: HomeViewModel, listState: LazyListSta
             }
 
             characters.itemCount == 0 -> {
-                item { EmptyListScreen(Modifier.fillParentMaxSize()) }
+                item { LoadingIndicator(Modifier.fillMaxWidth()) }
             }
 
             else -> {
@@ -154,6 +154,7 @@ fun CharacterListScreen(rickListViewModel: HomeViewModel, listState: LazyListSta
     }
 }
 
+
 @Composable
 fun CharacterItem(character: CharacterModel) {
     Row(
@@ -164,19 +165,18 @@ fun CharacterItem(character: CharacterModel) {
             .padding(8.dp),
         verticalAlignment = Alignment.CenterVertically
     ) {
-        AsyncImage(
-            model = character.image,
-            contentDescription = "Character Image",
+        Box(
             modifier = Modifier
-                .size(80.dp)
-                .clip(
-                    RoundedCornerShape(
-                        topStart = 12.dp,
-                        bottomStart = 12.dp
-                    )
-                ),
-            contentScale = ContentScale.Crop
-        )
+                .size(84.dp)
+                .clip(RoundedCornerShape(12.dp))
+        ) {
+            AsyncImage(
+                model = character.image,
+                contentDescription = "Character Image",
+                modifier = Modifier.fillMaxSize(),
+                contentScale = ContentScale.Crop
+            )
+        }
         Spacer(modifier = Modifier.width(12.dp))
         Column {
             Text(
@@ -239,9 +239,9 @@ fun getStatusColor(status: String): Color {
 
 @Composable
 fun LoadingIndicator(modifier: Modifier = Modifier) {
-    Box(modifier = modifier, contentAlignment = Alignment.Center) {
+    Box(modifier = modifier, contentAlignment = Alignment.TopCenter) {
         CircularProgressIndicator(
-            modifier = Modifier.size(64.dp),
+            modifier = Modifier.size(50.dp),
             color = Color.White
         )
     }
@@ -259,9 +259,9 @@ fun ErrorScreen(modifier: Modifier = Modifier) {
     }
 }
 
-@Composable
-fun EmptyListScreen(modifier: Modifier = Modifier) {
-    Box(modifier = modifier, contentAlignment = Alignment.Center) {
-        Text(text = "Todavía no hay personajes", color = Color.White)
-    }
-}
+//@Composable
+//fun EmptyListScreen(modifier: Modifier = Modifier) {
+//    Box(modifier = modifier, contentAlignment = Alignment.Center) {
+//        Text(text = "Todavía no hay personajes", color = Color.White)
+//    }
+//}
