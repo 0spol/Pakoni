@@ -1,13 +1,13 @@
 [versions]
 # 🔹 Gradle y Kotlin
-agp = "8.8.2"
+agp = "8.12.2"
 compiler = "1.5.15"
 kotlin = "2.1.10"
 
 # 🔹 AndroidX
-appcompat = "1.7.0"
-coreKtx = "1.15.0"
-lifecycleRuntimeKtx = "2.8.7"
+appcompat = "1.7.1"
+coreKtx = "1.17.0"
+lifecycleRuntimeKtx = "2.9.3"
 
 # 🔹 Coil & Paging
 coilCompose = "2.7.0"
@@ -15,39 +15,39 @@ pagingCompose = "3.3.6"
 
 # 🔹 Hilt & Dagger
 androidxHilt = "1.2.0"
-hilt = "2.55"
+hilt = "2.57.1"
 
 # 🔹 Jetpack Compose
 activityCompose = "1.10.1"
-composeBom = "2025.02.00"
-navigationCompose = "2.8.8"
+composeBom = "2025.08.01"
+navigationCompose = "2.9.3"
 
 # 🔹 Kotlin Symbol Processing (KSP)
 ksp = "2.1.10-1.0.29"
-runtimeLivedata = "1.7.8"
+runtimeLivedata = "1.9.0"
 
 # 🔹 Material Design
 material = "1.12.0"
 
 # 🔹 Retrofit
-retrofit = "2.11.0"
+retrofit = "3.0.0"
 
 # 🔹 Room (Base de datos)
-room = "2.6.1"
+room = "2.7.2"
 
 # 🔹 Serialización JSON
-kotlinxSerialization = "1.8.0"
+kotlinxSerialization = "1.9.0"
 constraintlayout = "2.2.1"
 
 # 🔹 Testing
-espressoCore = "3.6.1"
+espressoCore = "3.7.0"
 junit = "4.13.2"
-junitVersion = "1.2.1"
-uiGraphicsAndroid = "1.7.8"
-foundationAndroid = "1.7.8"
-material3Android = "1.3.1"
+junitVersion = "1.3.0"
+uiGraphicsAndroid = "1.9.0"
+foundationAndroid = "1.9.0"
+material3Android = "1.3.2"
 pagingCommonAndroid = "3.3.6"
-runtimeAndroid = "1.7.8"
+runtimeAndroid = "1.9.0"
 pagingComposeAndroid = "3.3.6"
 
 [libraries]
