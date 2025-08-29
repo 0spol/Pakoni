@@ -45,9 +45,9 @@ fun HomeScreen(
                 title = {
                     Text(
                         text = when (activeTab) {
-                            "home" -> "Rick and Morty"
-                            "saved" -> "Guardados"
-                            "settings" -> "Configuración"
+                            "home" -> "Rick & Morty"
+                            "saved" -> "Saved"
+                            "settings" -> "Settings"
                             else -> ""
                         },
                         color = Color.White
@@ -72,14 +72,14 @@ fun HomeScreen(
                 "home" -> CharacterListScreen(rickListViewModel, listState)
                 "saved" -> PlaceholderScreen(
                     Icons.Filled.Bookmark,
-                    "Favoritos guardados",
-                    "Aquí verás los personajes que guardes como favoritos"
+                    "Favorites saved",
+                    "Here you'll see the favorite characters you saved."
                 )
 
                 "settings" -> PlaceholderScreen(
                     Icons.Filled.Settings,
-                    "Configuración",
-                    "Aquí podrás ajustar las preferencias de la aplicación"
+                    "Settings",
+                    "Here you'll see the app configurations"
                 )
             }
         }
@@ -255,13 +255,6 @@ fun ErrorScreen(modifier: Modifier = Modifier) {
             .background(Color.Red),
         contentAlignment = Alignment.Center
     ) {
-        Text(text = "Ha ocurrido un error", color = Color.White)
+        Text(text = "An error has been occurred.", color = Color.White)
     }
 }
-
-//@Composable
-//fun EmptyListScreen(modifier: Modifier = Modifier) {
-//    Box(modifier = modifier, contentAlignment = Alignment.Center) {
-//        Text(text = "Todavía no hay personajes", color = Color.White)
-//    }
-//}

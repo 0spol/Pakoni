@@ -8,7 +8,7 @@ plugins {
 
 android {
     namespace = "com.pakoni.network"
-    compileSdk = 35
+    compileSdk = 36
 
     defaultConfig {
         minSdk = 24
