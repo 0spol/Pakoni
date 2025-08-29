@@ -1,4 +1,4 @@
-# パコニ
+# [パコニ](https://github.com/0spol/Pakoni) · [![GitHub license](https://img.shields.io/badge/license-Apache%202.0-blue.svg)](https://github.com/0spol/Pakoni/blob/main/LICENSE)
 A modular Android project using Clean Architecture with Kotlin and Gradle.
 
 This project integrates a Rick and Morty's api for data.
